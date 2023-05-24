@@ -1,20 +1,23 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
 //Destructurado
 const FoodBox = ({ food, deleteFood }) => {
-    const handleDelete = () => {
-        deleteFood(food.index);
-    };
+  const handleDelete = () => {
+    deleteFood(food.index);
+  };
   return (
-    <div className="FoodBox">
-      <img src={food.image} alt="comida" width={"200px"} />
-      <div>
-        <h2>{food.name}</h2>
-        <p>Calories: {food.calories}</p>
-        <p>Servings: {food.servings}</p>
-      </div>
-      <button onClick={handleDelete}>Delete</button>
-    </div>
+    <Card style={{ width: '300px' }} className='cardItems'>
+      <Card.Img src={food.image} alt="comida" width={'200px'} />
+      <Card.Body>
+        <Card.Title>{food.name}</Card.Title>
+        <Card.Text>Calories: {food.calories}</Card.Text>
+        <Card.Text>Servings: {food.servings}</Card.Text>
+
+        <Button variant="danger" onClick={handleDelete}>Delete</Button>
+      </Card.Body>
+    </Card>
   );
 };
 

@@ -5,6 +5,9 @@ import FoodBox from './components/FoodBox';
 import AddFoodForm from './components/AddFoodForm';
 import Search from './components/Search';
 
+import Button from 'react-bootstrap/Button';
+
+
 function App() {
   // useState(foods)
   const [foodList, setFoodList] = useState(foods);
@@ -20,6 +23,9 @@ function App() {
     setIsFormShowing(!isFormShowing);
   };
 
+  // Estado para cuando la lista este vacia
+  const [isListEmpty, setIsListEmpty] = useState(false);
+
   // Funcion para añadir nuevo elemento
   const handleAddFood = (newFood) => {
     // Spread + newFood para evitar clones
@@ -27,6 +33,8 @@ function App() {
     setFilteredFood([...foodList, newFood]);
     // Ocultamos el formulario al añadir un nuevo producto
     setIsFormShowing(false);
+    // Pasamos a false el mensaje de feedbacl
+    setIsListEmpty(false);
   };
 
   // Funcion para buscar un elemento
@@ -52,21 +60,31 @@ function App() {
     updatedFoodList.splice(index, 1);
     setFoodList(updatedFoodList);
     setFilteredFood(updatedFoodList);
+
+    if (updatedFoodList.length === 0) {
+      setIsListEmpty(true);
+    }
   };
 
   return (
     <div>
       <Search searchFood={handleSearchFood} />
-      <button onClick={toggleForm}>
-      {isFormShowing === true ? "Hide Form" : "Add New Food"}
-      </button>
-      {isFormShowing === true ? <AddFoodForm addFood={handleAddFood}/> : null}
-      
+      <div className='centrarBtn'>
+      <Button  variant="warning" onClick={toggleForm}>
+        {isFormShowing === true ? 'Hide Form' : 'Add New Food'}
+      </Button>
+      </div>
+      {isFormShowing === true ? <AddFoodForm addFood={handleAddFood} /> : null}
 
+      <div>
+        {isListEmpty === true ? <p>No more items in the list.</p> : null}
+      </div>
       {/* Iteramos en el array filtrado y mostramos un render de cada producto */}
+      <div className='cardContainer'>
       {filteredFood.map((food, index) => (
         <FoodBox key={index} food={food} deleteFood={handleDeleteFood} />
       ))}
+      </div>
     </div>
   );
 }

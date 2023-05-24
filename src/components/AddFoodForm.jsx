@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 // Destructurar props
 const AddFoodForm = ({ addFood, toggleForm }) => {
@@ -57,32 +59,44 @@ const AddFoodForm = ({ addFood, toggleForm }) => {
     // 3. Reiniciar los valores despues de añadir
     setNameInput('');
     setImageInput('');
-    setCaloriesInput('');
-    setServingsInput('');
+    setCaloriesInput(0);
+    setServingsInput(0);
   };
 
   return (
-    <div>
+    <div className='centrarAdd'>
       <h2>Add food</h2>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name">name</label>
-        <input value={nameInput} onChange={handleNameChange} type="text" />
-        <label htmlFor="image">image</label>
-        <input value={imageInput} onChange={handleImageChange} type="text" />
-        <label htmlFor="calories">calories</label>
-        <input
-          value={caloriesInput}
-          onChange={handleCaloriesChange}
-          type="number"
-        />
-        <label htmlFor="servings">servings</label>
-        <input
-          value={servingsInput}
-          onChange={handleServingsChange}
-          type="number"
-        />
-        <button htmlType="submit" >Add Food</button>
-      </form>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group>
+          <Form.Label htmlFor="name">Name</Form.Label>
+          <Form.Control value={nameInput} onChange={handleNameChange} type="text" />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label htmlFor="image">Image</Form.Label>
+          <Form.Control value={imageInput} onChange={handleImageChange} type="text" />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label htmlFor="calories">Calories</Form.Label>
+          <Form.Control
+            value={caloriesInput}
+            onChange={handleCaloriesChange}
+            type="number"
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label htmlFor="servings">Servings</Form.Label>
+          <Form.Control
+            value={servingsInput}
+            onChange={handleServingsChange}
+            type="number"
+          />
+        </Form.Group>
+        <Form.Group>
+          <Button variant="warning" type="submit" className='botonAdd'>
+            Add Food
+          </Button>
+        </Form.Group>
+      </Form>
     </div>
   );
 };
