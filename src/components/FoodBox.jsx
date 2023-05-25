@@ -12,8 +12,9 @@ const FoodBox = ({ food, deleteFood }) => {
       <Card.Img src={food.image} alt="comida" width={'200px'} />
       <Card.Body>
         <Card.Title>{food.name}</Card.Title>
-        <Card.Text>Calories: {food.calories}</Card.Text>
+        <Card.Text>Calories: {food.calories} kcal</Card.Text>
         <Card.Text>Servings: {food.servings}</Card.Text>
+        <Card.Text>Total Calories: {food.calories}*{food.servings} kcal</Card.Text>
 
         <Button variant="danger" onClick={handleDelete}>Delete</Button>
       </Card.Body>

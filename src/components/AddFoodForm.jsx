@@ -7,8 +7,16 @@ const AddFoodForm = ({ addFood, toggleForm }) => {
   // Creamos un estado por cada campo del formulario
   const [nameInput, setNameInput] = useState('');
   const [imageInput, setImageInput] = useState('');
-  const [caloriesInput, setCaloriesInput] = useState('');
-  const [servingsInput, setServingsInput] = useState('');
+  const [caloriesInput, setCaloriesInput] = useState(0);
+  const [servingsInput, setServingsInput] = useState(0);
+
+  //* Podriamos crear un solo estado
+  //   const [formInputs, setFormInputs] = useState({
+  //     name:"",
+  //     image: "",
+  //     calories: 0,
+  //     servings: 0,
+  //   })
 
   // Creamos las funciones de handle
   const handleNameChange = (event) => {
@@ -64,16 +72,24 @@ const AddFoodForm = ({ addFood, toggleForm }) => {
   };
 
   return (
-    <div className='centrarAdd'>
+    <div className="centrarAdd">
       <h2>Add food</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group>
           <Form.Label htmlFor="name">Name</Form.Label>
-          <Form.Control value={nameInput} onChange={handleNameChange} type="text" />
+          <Form.Control
+            value={nameInput}
+            onChange={handleNameChange}
+            type="text"
+          />
         </Form.Group>
         <Form.Group>
           <Form.Label htmlFor="image">Image</Form.Label>
-          <Form.Control value={imageInput} onChange={handleImageChange} type="text" />
+          <Form.Control
+            value={imageInput}
+            onChange={handleImageChange}
+            type="text"
+          />
         </Form.Group>
         <Form.Group>
           <Form.Label htmlFor="calories">Calories</Form.Label>
@@ -92,7 +108,7 @@ const AddFoodForm = ({ addFood, toggleForm }) => {
           />
         </Form.Group>
         <Form.Group>
-          <Button variant="warning" type="submit" className='botonAdd'>
+          <Button variant="warning" type="submit" className="botonAdd">
             Add Food
           </Button>
         </Form.Group>

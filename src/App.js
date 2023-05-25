@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import './App.css';
+// Traer la data inicial
 import foods from './foods.json';
+// Importar componentes
 import FoodBox from './components/FoodBox';
 import AddFoodForm from './components/AddFoodForm';
 import Search from './components/Search';
-
+// Importar Bootstrap
 import Button from 'react-bootstrap/Button';
 
 
